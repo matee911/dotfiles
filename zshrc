@@ -13,7 +13,7 @@ bindkey '^[[H'  beginning-of-line       # Home
 bindkey '^[[F'  end-of-line             # End
 bindkey "^r" history-incremental-search-backward
 
-export PATH=/usr/local/mysql/bin/:/opt/local/lib/rabbitmq/bin/:/opt/local/bin/:$PATH
+export PATH=$PATH:/usr/local/mysql/bin/:/opt/local/lib/rabbitmq/bin/:/opt/local/bin/
 export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
@@ -33,3 +33,4 @@ alias gm="cd ~/Developer/Projects/redefine/getmedia/"
 alias mirror-site="wget -L -r -k -p -m"
 
 #alias nose="nosetests --with-growl --with-achievements"
+alias ezo="cd /Users/matee/Developer/Projects/ezoteryka"
