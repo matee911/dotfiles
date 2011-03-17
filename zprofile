@@ -1,11 +1,12 @@
 # Path
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/opt/local/bin:$PATH
+export PATH=/opt/local/sbin:$PATH
 export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/mysql/bin/:$PATH
+export PATH=/opt/local/lib/rabbitmq/bin/:$PATH
+export PATH=/Users/matee/Developer/Sources/go/bin:$PATH
+
 
 # Manpath
 export MANPATH=/opt/local/share/man:$MANPATH
-
-#alias prawko='curl -s --data "pesel=PESEL&imie=IMIE&nazwisko=NAZWISKO" https://www.kierowca.pwpw.pl/PJAction.do|grep "<P><B>"'
-
 

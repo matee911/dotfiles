@@ -1,0 +1,19 @@
+try:
+    from django.core.management import setup_environ
+    import settings
+    setup_environ(settings)
+    print("Imported Django settings...")
+except Exception, e:
+    print("Settings not imported "+ str(e))
+else:
+    try:
+        for app in settings.INSTALLED_APPS:
+            try:
+                exec("from %s.models import *" % app)
+                #print 'Imported `%s`' % x
+            except:
+                print('Not imported %s' % app)
+        print('Imported Django models')
+    except:
+        pass
+
