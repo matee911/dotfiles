@@ -11,12 +11,7 @@ colors
 setopt prompt_subst 
 PROMPT='%{$fg_bold[green]%}%n %{$fg[blue]%}%c %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} %% %{$reset_color%}'
 
-bindkey '^[[H'  beginning-of-line       # Home
-bindkey '^[[F'  end-of-line             # End
-bindkey "^r" history-incremental-search-backward
+# bindkey '^[[H'  beginning-of-line       # Home
+# bindkey '^[[F'  end-of-line             # End
+# bindkey "^r" history-incremental-search-backward
 
-export PYTHONSTARTUP=~/.pythonrc
-export PYTHONPATH=$PYTHONPATH:/Users/matee/Developer/Projects/redefine/
-export PATH=/Users/matee/Developer/Sources/git-achievements/:$PATH
-
-alias git='git-achievements'

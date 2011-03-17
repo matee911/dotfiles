@@ -10,3 +10,9 @@ export PATH=/Users/matee/Developer/Sources/go/bin:$PATH
 # Manpath
 export MANPATH=/opt/local/share/man:$MANPATH
 
+#
+export PYTHONSTARTUP=~/.pythonrc
+export PYTHONPATH=$PYTHONPATH:/Users/matee/Developer/Projects/redefine/
+export PATH=/Users/matee/Developer/Sources/git-achievements/:$PATH
+
+alias git='git-achievements'
