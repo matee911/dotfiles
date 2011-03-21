@@ -7,14 +7,18 @@ alias -g NF='$(ls *(.om[1]))'       # newest file
 
 alias srv='script/server'           # run rails server
 
-alias praca='cd ~/Developer/Projects/redefine/praca'
-alias moben='cd ~/Developer/Projects/moben'
-alias voter='cd ~/Developer/Projects/voter'
-alias gg='cd ~/Developer/Projects/redefine/greengate'
-alias skaner='cd ~/Developer/Projects/redefine/rlb/cmswebservice/cmswebservice/suds/'
-alias projects="cd ~/Developer/Projects/"
-alias gm="cd ~/Developer/Projects/redefine/getmedia/"
-alias ezo="cd ~/Developer/Projects/ezoteryka"
+if [[ $HOST == "prosiak" ]]; then
+  PROJECT_PREFIX="~/Developer/Projects"
+else
+  PROJECT_PREFIX="~/repos"
+fi
+
+
+alias gg='cd $PROJECT_PREFIX/redefine/greengate'
+alias skaner='cd $PROJECT_PREFIX/redefine/rlb/cmswebservice/cmswebservice/suds/'
+alias projects="cd $PROJECT_PREFIX"
+alias repos="cd $PROJECT_PREFIX"
+alias gm="cd $PROJECT_PREFIX/getmedia"
 
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 alias netapps="lsof -P -i -n | cut -f 1 -d ' ' | uniq"
