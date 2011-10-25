@@ -6,7 +6,6 @@ export PATH=/usr/local/mysql/bin/:$PATH
 export PATH=/opt/local/lib/rabbitmq/bin/:$PATH
 export PATH=/Users/matee/Developer/Sources/go/bin:$PATH
 
-
 # Manpath
 export MANPATH=/opt/local/share/man:$MANPATH
 

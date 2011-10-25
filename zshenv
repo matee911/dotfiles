@@ -8,14 +8,39 @@ alias -g NF='$(ls *(.om[1]))'       # newest file
 
 alias srv='script/server'           # run rails server
 
-alias praca='cd ~/Developer/Projects/redefine/praca'
-alias moben='cd ~/Developer/Projects/moben'
-alias voter='cd ~/Developer/Projects/voter'
-alias gg='cd ~/Developer/Projects/redefine/greengate'
-alias skaner='cd ~/Developer/Projects/redefine/rlb/cmswebservice/cmswebservice/suds/'
-alias projects="cd ~/Developer/Projects/"
-alias gm="cd ~/Developer/Projects/redefine/getmedia/"
-alias ezo="cd ~/Developer/Projects/ezoteryka"
+if [[ $HOST == "prosiak" ]]; then
+  PROJECT_PREFIX="~/Developer/Projects"
+  export PYTHONPATH=$PYTHONPATH:/Users/matee/Developer/Projects/redefine/
+else
+  PROJECT_PREFIX="/home/matee/repos"
+  export PYTHONPATH=/home/matee/repos/:$PYTHONPATH
+fi
+
+# Git-achievements
+export PATH=$PROJECT_PREFIX/git-achievements/:$PATH
+alias git="git-achievements"
+
+
+# Bazaar alias
+alias bdi="bzr cdiff"
+alias bup="bzr up"
+alias bci="bzr ci"
+alias bst="bzr st -S"
+alias btip="bzr log -l 1 -v --include-merges"
+
+# Git alias
+alias gdi="git diff"
+alias gci="git commit -a"
+alias gst="git status -s"
+alias gup="git pull"
+
+
+alias gg='cd $PROJECT_PREFIX/redefine/greengate'
+alias skaner='cd $PROJECT_PREFIX/redefine/rlb/cmswebservice/cmswebservice/suds/'
+alias projects="cd $PROJECT_PREFIX"
+alias repos="cd $PROJECT_PREFIX"
+alias gm="cd $PROJECT_PREFIX/getmedia"
+alias mz="cd $PROJECT_PREFIX/muzomedia"
 
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 alias netapps="lsof -P -i -n | cut -f 1 -d ' ' | uniq"
