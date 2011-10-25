@@ -1,6 +1,7 @@
 # .zshenv is being sourced in every zsh session, while .zshrc is only used in interactive sessions
 
-if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
+#if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
+[[ -s "/Users/matee/.rvm/scripts/rvm" ]] && source "/Users/matee/.rvm/scripts/rvm"
 
 alias -g ND='$(ls -d *(/om[1]))'    # newest directory
 alias -g NF='$(ls *(.om[1]))'       # newest file
