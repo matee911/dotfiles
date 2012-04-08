@@ -1,24 +1,29 @@
 # .zshenv is being sourced in every zsh session, while .zshrc is only used in interactive sessions
 
-#if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
 [[ -s "/Users/matee/.rvm/scripts/rvm" ]] && source "/Users/matee/.rvm/scripts/rvm"
 
 
-if [[ $HOST == "prosiak" ]]; then
-  PROJECT_PREFIX="~/Developer/Projects"
-  WORK_PROJECT_PREFIX="$PROJECT_PREFIX/redefine"
-  export PYTHONPATH=$PYTHONPATH:/Users/matee/Developer/Projects/redefine/
-else
-  PROJECT_PREFIX="/home/matee/repos"
-  WORK_PROJECT_PREFIX=$PROJECT_PREFIX
-  export PYTHONPATH=/home/matee/repos/:$PYTHONPATH
-fi
-
 export PATH=~/bin:$PATH
+export PATH=$PATH:~/.rvm/gems/ruby-1.9.3-p125-perf/bin
+export PATH=$PATH:~/.rvm/gems/ruby-1.9.3-p125-perf@global/bin
+export PATH=$PATH:~/.rvm/rubies/ruby-1.9.3-p125-perf/bin
+export PATH=$PATH:~/.rvm/bin
+export PATH=$PATH:/usr/local/bin/
+export PATH=$PATH:/bin
+export PATH=$PATH:/sbin
+export PATH=$PATH:/usr/bin
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/usr/libexec
+
+
+PROJECT_PREFIX="~/Developer/Projects"
+WORK_PROJECT_PREFIX="$PROJECT_PREFIX/Work"
+export PYTHONPATH=$PYTHONPATH:/Users/matee/Developer/Projects/Work/
+
 
 # Git-achievements
-export PATH=$PROJECT_PREFIX/git-achievements/:$PATH
-alias git="git-achievements"
+# export PATH=$PROJECT_PREFIX/git-achievements/:$PATH
+# alias git="git-achievements"
 
 
 # Bazaar alias
@@ -58,11 +63,8 @@ alias skaner='cd $WORK_PROJECT_PREFIX/rlb/cmswebservice/cmswebservice/suds/'
 alias projects="cd $PROJECT_PREFIX"
 alias repos="cd $PROJECT_PREFIX"
 
-alias edi="cd $PROJECT_PREFIX/Private/eDi"
-
 #alias nose="nosetests --with-growl --with-achievements"
 #alias prawko='curl -s --data "pesel=PESEL&imie=IMIE&nazwisko=NAZWISKO" https://www.kierowca.pwpw.pl/PJAction.do|grep "<P><B>"'
-
 
 
 if [ -f ~/.zsh_nocorrect ]; then
@@ -73,8 +75,7 @@ fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-
-
+# Tuning ruby: https://gist.github.com/1688857
 export RUBY_HEAP_MIN_SLOTS=1000000
 export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
