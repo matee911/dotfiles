@@ -14,6 +14,7 @@ else
   export PYTHONPATH=/home/matee/repos/:$PYTHONPATH
 fi
 
+export PATH=~/bin:$PATH
 
 # Git-achievements
 export PATH=$PROJECT_PREFIX/git-achievements/:$PATH
@@ -43,7 +44,7 @@ alias -g NF='$(ls *(.om[1]))'       # newest file
 # Virtualenv + Python
 alias activate="source bin/activate"
 alias pypath="export PYTHONPATH=.:.."
-alias django_settings_module="PWD=`pwd`; export DJANGO_SETTINGS_MODULE=`basename $PWD`.settings"
+alias django_settings_module="PWD=`pwd`; export DJANGO_SETTINGS_MODULE=`basename $PWD`.settings; echo $DJANGO_SETTINGS_MODULE"
 
 # Repositories
 alias gm="cd $WORK_PROJECT_PREFIX/getmedia; pypath; django_settings_module; activate"
@@ -69,3 +70,13 @@ if [ -f ~/.zsh_nocorrect ]; then
         alias $COMMAND="nocorrect $COMMAND"
     done < ~/.zsh_nocorrect
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+
+
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000
