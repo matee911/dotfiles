@@ -3,17 +3,23 @@
 [[ -s "/Users/matee/.rvm/scripts/rvm" ]] && source "/Users/matee/.rvm/scripts/rvm"
 
 
+export PATH=/usr/local/texlive/2012/bin/x86_64-darwin/:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/share/python:$PATH
 export PATH=~/bin:$PATH
 export PATH=$PATH:~/.rvm/gems/ruby-1.9.3-p125-perf/bin
 export PATH=$PATH:~/.rvm/gems/ruby-1.9.3-p125-perf@global/bin
 export PATH=$PATH:~/.rvm/rubies/ruby-1.9.3-p125-perf/bin
 export PATH=$PATH:~/.rvm/bin
-export PATH=$PATH:/usr/local/bin/
 export PATH=$PATH:/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/usr/bin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/usr/libexec
+export PATH=$PATH:/usr/local/Cellar/gettext/0.18.1.1/bin
+
+# bzrlib
+export PYTHONPATH=/usr/local/Cellar/bazaar/2.4.2/libexec:$PYTHONPATH
 
 
 PROJECT_PREFIX="~/Developer/Projects"
@@ -65,6 +71,9 @@ alias repos="cd $PROJECT_PREFIX"
 
 #alias nose="nosetests --with-growl --with-achievements"
 #alias prawko='curl -s --data "pesel=PESEL&imie=IMIE&nazwisko=NAZWISKO" https://www.kierowca.pwpw.pl/PJAction.do|grep "<P><B>"'
+
+
+cdpath=(~ ~/Developer ~/Developer/Projects ~/Developer/Projects/Private ~/Developer/Projects/Work)
 
 
 if [ -f ~/.zsh_nocorrect ]; then

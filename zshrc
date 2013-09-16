@@ -50,3 +50,15 @@ PROMPT='%{$fg_bold[green]%}%n %{$fg[blue]%}%c %{$fg_bold[red]%}$(git_prompt_info
 # bindkey '^[[F'  end-of-line             # End
 # bindkey "^r" history-incremental-search-backward
 
+export PATH=/usr/local/texlive/2012/bin/x86_64-darwin:$PATH
+export PATH=/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/Cellar/pyqt/4.9.4/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=/usr/local/share/python:$PATH
+export PATH=$PATH:/usr/local/Cellar/play/2.0.4/bin
+export PATH=$PATH:/usr/local/Cellar/gettext/0.18.1.1/bin
+alias trybuy="git checkout trybuy && git push origin trybuy && git checkout staging && git merge trybuy && git push origin staging && ./staging.sh send_pack select_pack && git checkout trybuy"
+export CLASSPATH=$CLASSPATH:/usr/local/Cellar/closure-compiler/20130227/libexec/build/
+
+alias pipoutdated='pip freeze -l|cut -d "=" -f 1|sort -f|xargs pip search -v|grep "INSTALLED:" -B 1 -A 1|grep -i "latest" -B 2|grep -vE "^\-\-"'
