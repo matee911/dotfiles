@@ -3,9 +3,8 @@
 [[ -s "/Users/matee/.rvm/scripts/rvm" ]] && source "/Users/matee/.rvm/scripts/rvm"
 
 
-export PATH=/usr/local/texlive/2012/bin/x86_64-darwin/:$PATH
+export PATH=/usr/local/texlive/2012/bin/x86_64-darwin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/share/python:$PATH
 export PATH=~/bin:$PATH
 export PATH=$PATH:~/.rvm/gems/ruby-1.9.3-p125-perf/bin
 export PATH=$PATH:~/.rvm/gems/ruby-1.9.3-p125-perf@global/bin
@@ -17,6 +16,7 @@ export PATH=$PATH:/usr/bin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/usr/libexec
 export PATH=$PATH:/usr/local/Cellar/gettext/0.18.1.1/bin
+export PATH=$PATH:/usr/local/share/python3.2
 
 # bzrlib
 export PYTHONPATH=/usr/local/Cellar/bazaar/2.4.2/libexec:$PYTHONPATH
@@ -72,6 +72,7 @@ alias repos="cd $PROJECT_PREFIX"
 #alias nose="nosetests --with-growl --with-achievements"
 #alias prawko='curl -s --data "pesel=PESEL&imie=IMIE&nazwisko=NAZWISKO" https://www.kierowca.pwpw.pl/PJAction.do|grep "<P><B>"'
 
+alias ssh="cat ~/.ssh/config.d/* > ~/.ssh/config ; ssh"
 
 cdpath=(~ ~/Developer ~/Developer/Projects ~/Developer/Projects/Private ~/Developer/Projects/Work)
 
@@ -90,3 +91,5 @@ export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
+
+export GOPATH=$GOPATH:/Users/matee/Developer/Projects/Private/gopath
