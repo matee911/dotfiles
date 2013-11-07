@@ -17,6 +17,7 @@ export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/usr/libexec
 export PATH=$PATH:/usr/local/Cellar/gettext/0.18.1.1/bin
 export PATH=$PATH:/usr/local/share/python3.2
+export PATH=$PATH:/usr/local/bin
 
 # bzrlib
 export PYTHONPATH=/usr/local/Cellar/bazaar/2.4.2/libexec:$PYTHONPATH
@@ -65,6 +66,8 @@ alias dotfiles="cd $PROJECT_PREFIX/Private/dotfiles"
 alias qilex="cd $WORK_PROJECT_PREFIX/qilex-users"
 alias skaner='cd $WORK_PROJECT_PREFIX/rlb/cmswebservice/cmswebservice/suds/'
 
+
+alias apg="apg -t -n 10"
 
 alias projects="cd $PROJECT_PREFIX"
 alias repos="cd $PROJECT_PREFIX"
