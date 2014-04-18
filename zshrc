@@ -30,7 +30,9 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew bundler django fabric go pip python postgres virtualenv)
+
+#plugins=(git brew bundler django fabric go pip python postgres virtualenv)
+plugins=(git brew go pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -64,3 +66,6 @@ export CLASSPATH=$CLASSPATH:/usr/local/Cellar/closure-compiler/20130227/libexec/
 alias pipoutdated='pip freeze -l|cut -d "=" -f 1|sort -f|xargs pip search -v|grep "INSTALLED:" -B 1 -A 1|grep -i "latest" -B 2|grep -vE "^\-\-"'
 alias got='go'
 
+
+
+[[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
