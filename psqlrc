@@ -1,2 +1,13 @@
 \pset expanded
 \pset null '(null)'
+\set PROMPT1 '%n@%m:%> %/%#%[%033[5;31m%]%x%[%033[0m%] '
+\pset border 2
+-- pset border 0
+
+-- to display almost as CSV
+-- \pset border 1
+-- \pset format unaligned
+-- \pset fieldsep ","
+-- \pset tuples_only
+
+

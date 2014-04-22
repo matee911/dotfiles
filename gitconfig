@@ -1,0 +1,26 @@
+[user]
+	email = matee@matee.net
+	name = matee
+[color]
+	ui = true
+	status = auto
+	diff = auto
+	branch = auto
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[color "diff"]
+	whitespace = red reverse
+[core]
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[alias]
+	ci = commit -am
+	di = diff
+	st = status
+	co = checkout
+	ls = ls-files
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue)%an%Creset' --abbrev-commit
+	less = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate
