@@ -2,7 +2,6 @@
 
 [[ -s "/Users/matee/.rvm/scripts/rvm" ]] && source "/Users/matee/.rvm/scripts/rvm"
 
-
 export PATH=/usr/local/texlive/2012/bin/x86_64-darwin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=~/bin:$PATH
@@ -18,10 +17,12 @@ export PATH=$PATH:/usr/libexec
 export PATH=$PATH:/usr/local/Cellar/gettext/0.18.1.1/bin
 export PATH=$PATH:/usr/local/share/python3.2
 export PATH=$PATH:/usr/local/bin
+export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 
 # bzrlib
 export PYTHONPATH=/usr/local/Cellar/bazaar/2.4.2/libexec:$PYTHONPATH
 
+export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 PROJECT_PREFIX="~/Developer/Projects"
 WORK_PROJECT_PREFIX="$PROJECT_PREFIX/Work"
@@ -95,4 +96,4 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
-export GOPATH=$GOPATH:/Users/matee/Developer/Projects/Private/gopath
+export GOPATH=/Users/matee/Developer/Projects/Private/gopath

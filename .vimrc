@@ -42,6 +42,28 @@ set pastetoggle=<F2>                                  " pasting large amounts of
 " change : to ; (;w without pressing shift key
 nnoremap ; :
 
+" No pain no gain
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Use shift-H and shift-L for move to beginning/end
+nnoremap H 0
+nnoremap L $
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Higlight with *, undo with ,/
+nmap <silent> ,/ :nohlsearch<CR>
+
+" Did you forgot to open file with sudo?  ;w!! to the rescue
+cmap w!! w !sudo tee % >/dev/null
+
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -50,6 +72,10 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "" NerdTree
 let NERDTreeShowHidden = 1
 let NERDTreeIgnore=['\.pyc$', '\.pyo$']
+" Quit on opening files from the tree
+let NERDTreeQuitOnOpen=1
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
 nmap <Leader>d :NERDTreeToggle<CR>
 
 
@@ -91,6 +117,13 @@ function! TrimWhiteSpace() "{{{
     call setpos('.', cursor_pos)
 endfunction "}}}
 
+" Strip all trailing whitespace from a file, using ,W
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+
+" Ack for the word under cursor
+"nnoremap <leader>a :Ack<Space>
+nnoremap <leader>a :Ack!<Space><c-r><c-W>
+
 command Rtw :call TrimWhiteSpace()
 nnoremap <silent> <Leader>rtw :call TrimWhiteSpace()<CR>
 "" autocmd BufWritePre * :call TrimWhiteSpace()
@@ -108,4 +141,14 @@ au FileType ruby map <F8> :!ctags -f .tags --languages=Ruby --langmap=Ruby:.rb.t
 set tags=.tags
 map <F5> :CtrlPTag<CR>
 
+
+" syntastic
+" uzyj ,L dla pylinta, ,l dla call Flake8 ,C-l dla SyntasticCheck
+nmap <leader><C-l> :SyntasticCheck<Cr>
+let g:syntastic_check_on_wq=0
+let g:syntastic_quiet_warnings=0
+let g:syntastic_mode_map = { 'mode': 'active' }
+" tylko flake8 bo jest duzo duzo szybszy (dzieki pyflakes niz pylint)
+let g:syntastic_python_checkers = ['python', 'flake8']
+" let g:syntastic_python_flake8_args="--config=setup.cfg"
 
