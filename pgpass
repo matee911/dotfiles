@@ -1,0 +1,3 @@
+# hostname:port:database:username:password
+# chmod 0600 ~/.pgpass
+# You can use wildcard '*' in any field
