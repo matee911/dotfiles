@@ -146,7 +146,8 @@ map <F5> :CtrlPTag<CR>
 " uzyj ,L dla pylinta, ,l dla call Flake8 ,C-l dla SyntasticCheck
 nmap <leader><C-l> :SyntasticCheck<Cr>
 let g:syntastic_check_on_wq=0
-let g:syntastic_quiet_warnings=0
+" let g:syntastic_quiet_warnings=0
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_mode_map = { 'mode': 'active' }
 " tylko flake8 bo jest duzo duzo szybszy (dzieki pyflakes niz pylint)
 let g:syntastic_python_checkers = ['python', 'flake8']
