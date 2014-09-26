@@ -78,7 +78,7 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeHighlightCursorline=1
 nmap <Leader>d :NERDTreeToggle<CR>
 
-
+"" Ostatnio otwierane pliki
 nmap <Leader>o :CtrlPMRUFiles<CR>
 
 
@@ -110,6 +110,11 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_follow_symlinks = 1
 
 
+"" Ack for the word under cursor
+"nnoremap <leader>a :Ack<Space>
+nnoremap <leader>a :Ack!<Space><c-r><c-W>
+
+
 "" Removes trailing spaces
 function! TrimWhiteSpace() "{{{
     let cursor_pos = getpos('.')
@@ -117,29 +122,36 @@ function! TrimWhiteSpace() "{{{
     call setpos('.', cursor_pos)
 endfunction "}}}
 
-" Strip all trailing whitespace from a file, using ,W
-nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-
-" Ack for the word under cursor
-"nnoremap <leader>a :Ack<Space>
-nnoremap <leader>a :Ack!<Space><c-r><c-W>
+"" Strip all trailing whitespace from a file, using ,W
+" nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 command Rtw :call TrimWhiteSpace()
 nnoremap <silent> <Leader>rtw :call TrimWhiteSpace()<CR>
 "" autocmd BufWritePre * :call TrimWhiteSpace()
-"" autocmd BufWritePre *.py :call TrimWhiteSpace()
+"" Automatyczne trimowanie spacji przy zapisywaniu .py, .go, .rst, .html
 autocmd BufWritePre *.go :call TrimWhiteSpace()
+autocmd BufWritePre *.html :call TrimWhiteSpace()
+autocmd BufWritePre *.py :call TrimWhiteSpace()
 autocmd BufWritePre *.rst :call TrimWhiteSpace()
 
 """ -------- Ctags
-map <leader><F8> :!ctags -f tags --verbose=yes --recurse=yes --exclude=tmp --fields=zK . <cr>
-map <F8> :!ctags -f .tags --languages=HTML,Java,JavaScript,Python,Ruby --totals --verbose=no --recurse=yes --exclude=tmp --fields=zK . <cr>
-" au FileType python map <F8> :!ctags -f .tags --languages=Python --verbose=no --totals --recurse=yes --exclude=tmp . <cr>
-au FileType python map <F8> :!ctags -f ._tags --languages=Python --verbose=no --totals --recurse=yes --exclude=tmp --fields=zK .;fgrep -v kind:variable ._tags >.tags;rm ._tags<cr>
-au FileType ruby map <F8> :!ctags -f .tags --languages=Ruby --langmap=Ruby:.rb.thor --verbose=no --totals --recurse=yes --exclude=tmp --fields=zK . <cr>
+"" brew install --HEAD ctags (--HEAD poniewaz na chwile obecna formula instaluje wersje 5.8 bez wsparcia dla go)
+"" Poniewaz
+"" /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ctags
+"" jest malo kompatybilne
 """ tags file
 set tags=.tags
+
+map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --verbose=no --recurse=yes --exclude=tmp --exclude=__pycache__ --exclude=.tox --exclude=htmlcov --totals=yes --fields=zK . <cr>
+""map <leader><F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --verbose=no --recurse=yes --exclude=tmp --exclude=__pycache__ --exclude=.tox --exclude=htmlcov --totals=yes --fields=zK .
+"" /usr/local/Cellar/ctags/5.8/bin/ctags -f tags --verbose=yes --recurse=yes --exclude=tmp,.tox --fields=zK . <cr>
+"" map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --languages=HTML,Java,JavaScript,Python,Ruby --totals --verbose=no --recurse=yes --exclude=tmp --fields=zK . <cr>
+"" au FileType python map <F8> :!ctags -f .tags --languages=Python --verbose=no --totals --recurse=yes --exclude=tmp . <cr>
+"" au FileType python map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f ._tags --languages=Python --verbose=no --totals --recurse=yes --exclude=tmp --fields=zK .;fgrep -v kind:variable ._tags >.tags;rm ._tags<cr>
+"" au FileType ruby map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --languages=Ruby --langmap=Ruby:.rb.thor --verbose=no --totals --recurse=yes --exclude=tmp --fields=zK . <cr>
+
 map <F5> :CtrlPTag<CR>
+"" using <ctrl>+] makes it possible to jump to the declaration of the token under the cursor
 
 
 " syntastic
@@ -153,3 +165,14 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 let g:syntastic_python_checkers = ['python', 'flake8']
 " let g:syntastic_python_flake8_args="--config=setup.cfg"
 
+
+
+command Dark :colorscheme desert
+command Light :colorscheme summerfruit256
+
+
+"" TODO: uporzadkowac
+au BufRead,BufNewFile *.md set filetype=markdown
+
+" set macmeta " Allow use of Option key as meta key (for M-x bindings)
+set fu " Start fullscreen
