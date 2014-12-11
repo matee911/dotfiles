@@ -39,35 +39,17 @@ set list
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮,nbsp:•    " highlight whitespaces
 set pastetoggle=<F2>                                  " pasting large amounts of text into vim
 
-" change : to ; (;w without pressing shift key
-nnoremap ; :
-
-" No pain no gain
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" Use shift-H and shift-L for move to beginning/end
-nnoremap H 0
-nnoremap L $
-
-" Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-" Higlight with *, undo with ,/
-nmap <silent> ,/ :nohlsearch<CR>
-
-" Did you forgot to open file with sudo?  ;w!! to the rescue
-cmap w!! w !sudo tee % >/dev/null
+"" Relative line number
+"" d5k (up); indent 10lines 10>>
+set relativenumber
 
 
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" No annoying sound on errors
+" set noerrorbells
+" set novisualbell
+" set t_vb=
+" set tm=500
+
 
 "" NerdTree
 let NERDTreeShowHidden = 1
@@ -76,10 +58,11 @@ let NERDTreeIgnore=['\.pyc$', '\.pyo$']
 let NERDTreeQuitOnOpen=1
 " Highlight the selected entry in the tree
 let NERDTreeHighlightCursorline=1
-nmap <Leader>d :NERDTreeToggle<CR>
 
 "" Ostatnio otwierane pliki
-nmap <Leader>o :CtrlPMRUFiles<CR>
+let g:ctrlp_mruf_max = 10
+" Set this to 1 to show only MRU files in the current working directory
+let g:ctrlp_mruf_relative = 1
 
 
 "" Searching
@@ -94,6 +77,9 @@ set number                                              " always show line numbe
 set showmatch                                           " set show matching parenthesis
 set cursorline
 hi CursorLine cterm=none ctermbg=none
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=2
+
 
 "" Time out on key codes but not mappings.
 "" Basically this makes terminal Vim work sanely.
@@ -101,18 +87,13 @@ set notimeout
 set ttimeout
 set ttimeoutlen=100
 
-colorscheme summerfruit256
 
+"" CtrlP
 let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|vendor\|node_modules$\|target$\|project$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$\|.log$\|.pyc$',
+      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|htmlcov\|vendor\|node_modules$\|target$\|project$',
+      \ 'file': '\.exe$\|\.so$\|\.dll$\|.log$\|.pyc|.tags$',
       \ }
 let g:ctrlp_follow_symlinks = 1
-
-
-"" Ack for the word under cursor
-"nnoremap <leader>a :Ack<Space>
-nnoremap <leader>a :Ack!<Space><c-r><c-W>
 
 
 "" Removes trailing spaces
@@ -122,11 +103,6 @@ function! TrimWhiteSpace() "{{{
     call setpos('.', cursor_pos)
 endfunction "}}}
 
-"" Strip all trailing whitespace from a file, using ,W
-" nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-
-command Rtw :call TrimWhiteSpace()
-nnoremap <silent> <Leader>rtw :call TrimWhiteSpace()<CR>
 "" autocmd BufWritePre * :call TrimWhiteSpace()
 "" Automatyczne trimowanie spacji przy zapisywaniu .py, .go, .rst, .html
 autocmd BufWritePre *.go :call TrimWhiteSpace()
@@ -139,25 +115,30 @@ autocmd BufWritePre *.rst :call TrimWhiteSpace()
 "" Poniewaz
 "" /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ctags
 "" jest malo kompatybilne
-""" tags file
+"" tags file
 set tags=.tags
 
-map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --verbose=no --recurse=yes --exclude=tmp --exclude=__pycache__ --exclude=.tox --exclude=htmlcov --totals=yes --fields=zK . <cr>
-""map <leader><F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --verbose=no --recurse=yes --exclude=tmp --exclude=__pycache__ --exclude=.tox --exclude=htmlcov --totals=yes --fields=zK .
-"" /usr/local/Cellar/ctags/5.8/bin/ctags -f tags --verbose=yes --recurse=yes --exclude=tmp,.tox --fields=zK . <cr>
-"" map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --languages=HTML,Java,JavaScript,Python,Ruby --totals --verbose=no --recurse=yes --exclude=tmp --fields=zK . <cr>
+
+"" using Ctrl-] makes it possible to jump to the declaration of the token under the cursor
+"" Ctrl-t to climb back up the tree.
+"" You can also go directly to a tag’s definition by entering one of the following in vim’s command mode:
+"" :tag function_name
+"" :ta function_name
+"" :tag /^asserts_*
+"" :ts or :tselect shows the list
+"" :tn or :tnext goes to the next tag in that list
+"" :tp or :tprev goes to the previous tag in that list
+"" :tf or :tfirst goes to the first tag of the list
+"" :tl or :tlast goes to the last tag of the list
+"" To show the tags you’ve traversed since you opened vim, run :tags.
+
 "" au FileType python map <F8> :!ctags -f .tags --languages=Python --verbose=no --totals --recurse=yes --exclude=tmp . <cr>
 "" au FileType python map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f ._tags --languages=Python --verbose=no --totals --recurse=yes --exclude=tmp --fields=zK .;fgrep -v kind:variable ._tags >.tags;rm ._tags<cr>
 "" au FileType ruby map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --languages=Ruby --langmap=Ruby:.rb.thor --verbose=no --totals --recurse=yes --exclude=tmp --fields=zK . <cr>
 
-map <F5> :CtrlPTag<CR>
-"" using <ctrl>+] makes it possible to jump to the declaration of the token under the cursor
-
 
 " syntastic
-" uzyj ,L dla pylinta, ,l dla call Flake8 ,C-l dla SyntasticCheck
-nmap <leader><C-l> :SyntasticCheck<Cr>
-let g:syntastic_check_on_wq=0
+let g:syntastic_check_on_wq=1
 " let g:syntastic_quiet_warnings=0
 let g:syntastic_quiet_messages = {'level': 'info'}
 let g:syntastic_mode_map = { 'mode': 'active' }
@@ -166,13 +147,153 @@ let g:syntastic_python_checkers = ['python', 'flake8']
 " let g:syntastic_python_flake8_args="--config=setup.cfg"
 
 
-
-command Dark :colorscheme desert
-command Light :colorscheme summerfruit256
-
-
 "" TODO: uporzadkowac
 au BufRead,BufNewFile *.md set filetype=markdown
 
+"
+"
+"
+" Autocompletion   ctrl+n
+"
+"
+"
+
+"" Make Airline visible all the time
+set laststatus=2
+let g:airline#extensions#hunks#enabled = 1
+"" https://github.com/airblade/vim-gitgutter
+"" :GitGutterEnable
+"" TODO:
+"" patch color scheme   let g:airline_theme_patch_func = 'AirlineThemePatch'
+"" function! AirlineThemePatch(palette)
+""    if g:airline_theme == 'badwolf'
+""      for colors in values(a:palette.inactive)
+""        let colors[3] = 245
+""      endfor
+""    endif
+""  endfunction
+
+
+"" ignore whitespaces
+let g:gitgutter_diff_args = '-w'
+let g:gitgutter_sign_column_always = 1
+:GitGutterEnable
+:GitGutterSignsEnable
+
+
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+
+" Disable scrollbars (real hackers don't use scrollbars for navigation!)
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+
+
+"""""""""""""""""""
+"" Commands
+"""""""""""""""""""
+
+command Dark :colorscheme desert | AirlineTheme zenburn
+command Light :colorscheme summerfruit256 | AirlineTheme base16
+"" :AirlineTheme base16 | light | silver
+"" :AirlineTheme dark | jellybeans | kolor | laederon | lucius | molokai |
+"" monochrome | murmur | raven! | zenburn
+Dark
+
+"" command Rtw :call TrimWhiteSpace()
+
+
+"""""""""""""""""""
+"" Mappings
+"""""""""""""""""""
+
+" change : to ; (;w without pressing shift key
+nnoremap ; :
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" No pain no gain
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Use shift-H and shift-L for move to beginning/end
+nnoremap H 0
+nnoremap L $
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Higlight with *, undo with ,/
+nmap <silent> ,/ :nohlsearch<CR>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Did you forgot to open file with sudo?  ;w!! to the rescue
+cmap w!! w !sudo tee % >/dev/null
+
+nmap <Leader>d :NERDTreeToggle<CR>
+nmap <Leader>f :NERDTreeFind<CR>
+" Ostatnio otwierane pliki
+nmap <Leader>o :CtrlPMRUFiles<CR>
+
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+"" Ack for the word under cursor
+"nnoremap <leader>a :Ack<Space>
+" nnoremap <leader>a :Ack!<Space><Space><c-r><c-W>
+autocmd FileType python map <leader>a :Ack!<Space>--python<Space><c-r><c-W>
+
+nnoremap <silent> <Leader>rtw :call TrimWhiteSpace()<CR>
+
+"" F8 to (re)generate tags
+map <F8> :!/usr/local/Cellar/ctags/5.8/bin/ctags -f .tags --verbose=no --recurse=yes --exclude=tmp --exclude=__pycache__ --exclude=.tox --exclude=htmlcov --totals=yes --fields=zK . <cr>
+"" Tags list
+"" map <F5> :CtrlPTag<CR>
+nnoremap <leader>. :CtrlPTag<cr>
+"" CtrlPBufTag
+
+" uzyj ,L dla pylinta, ,l dla call Flake8 ,C-l dla SyntasticCheck
+nmap <leader><C-l> :SyntasticCheck<CR>
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
 " set macmeta " Allow use of Option key as meta key (for M-x bindings)
-set fu " Start fullscreen
+"" or...
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
+
+
+
+nmap <Leader>t :TagbarToggle<CR>

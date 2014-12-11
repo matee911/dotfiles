@@ -1,32 +1,36 @@
 [user]
-	email = matee@matee.net
-	name = matee
+  email = matee@matee.net
+  name = matee
+  #email = pep8@redefine.pl
+  #name = pep8
 [color]
-	ui = true
-	status = auto
-	diff = auto
-	branch = auto
-	interactive = auto
-	pager = true
+  ui = true
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  pager = true
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-	whitespace = red reverse
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [core]
-	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	editor = vim
-	excludesfile = ~/.gitignore_global
-	pager = less -FRSX
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  editor = vim
+  excludesfile = ~/.gitignore_global
+  # Uroki OSX http://superuser.com/questions/777617/line-wrapping-less-in-os-x-specifically-for-use-with-git-diff
+  #pager = fold -w 120|less -FRSX
+  pager = less -r
 [diff]
     # Make diffs shorter when moving/copying files
     rename = copy
