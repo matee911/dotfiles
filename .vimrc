@@ -144,6 +144,7 @@ let g:syntastic_quiet_messages = {'level': 'info'}
 let g:syntastic_mode_map = { 'mode': 'active' }
 " tylko flake8 bo jest duzo duzo szybszy (dzieki pyflakes niz pylint)
 let g:syntastic_python_checkers = ['python', 'flake8']
+" python -m flake8
 " let g:syntastic_python_flake8_args="--config=setup.cfg"
 
 
@@ -196,6 +197,13 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
+
+
+
+"""""""""""""""""""
+"" Filetypes
+"""""""""""""""""""
+au BufRead,BufNewFile cloud-config setfiletype yaml
 
 
 """""""""""""""""""

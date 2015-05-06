@@ -47,7 +47,9 @@
 [gc]
     auto = 1
 [alias]
-    st = status
+    finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
+    
+    st = status -sb
 
     # Commit
 	ci = commit -v
@@ -120,3 +122,9 @@
     merged = !sh -c 'git branch --merged master | grep -v master'
     rmerged = !sh -c 'git branch -r --merged master | grep -v master'
     
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

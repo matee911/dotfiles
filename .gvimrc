@@ -3,7 +3,7 @@ if has("gui_macvim")
   map <D-t> :CtrlP<CR>
   imap <D-t> <ESC>:CtrlP<CR>
   
-  set fu " Start fullscreen
+  "" set fu " Start fullscreen
 endif
 let g:ctrlp_map = ''
 
