@@ -90,7 +90,7 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue)%an%Creset' --abbrev-commit
 	less = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate
 	changes = log --pretty=format:':%C(yellow)%h%Cred%d%Creset %s %C(cyan) %an, %ar%Creset' --name-status
-	standup = !git log –since yesterday –author `git config user.email` –pretty=short
+	standup = !git log --since=yesterday --author=`git config user.email` --pretty=short
 	
 	# Creates/deletes the current branch at the remote origin repo
     publish = !sh -c 'CURRENT=$(git symbolic-ref HEAD | sed -e s@.*/@@) \
