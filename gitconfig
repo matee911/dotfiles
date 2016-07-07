@@ -1,6 +1,7 @@
 [user]
   email = matee@matee.net
   name = matee
+	signingkey = 24BDBD1F964B3793
   #email = pep8@redefine.pl
   #name = pep8
 [color]
@@ -38,7 +39,7 @@
     # instead of a/b/c/d as prefixes for patches
     mnemonicprefix = true
 [branch]
-    autosetuprebase = always
+    # autosetuprebase = always
 [merge]
     summary = true
     verbosity = 1
@@ -130,3 +131,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[commit]
+	gpgsign = true
