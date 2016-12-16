@@ -91,7 +91,7 @@ set ttimeoutlen=100
 "" CtrlP
 let g:ctrlp_custom_ignore = {
       \ 'dir':  '\.git$\|\.hg$\|\.svn$\|htmlcov\|vendor\|node_modules$\|target$\|project$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$\|.log$\|.pyc|.tags$',
+      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.log$\|\.pyc$\|\.tags$',
       \ }
 let g:ctrlp_follow_symlinks = 1
 
@@ -178,8 +178,8 @@ let g:airline#extensions#hunks#enabled = 1
 "" ignore whitespaces
 let g:gitgutter_diff_args = '-w'
 let g:gitgutter_sign_column_always = 1
-:GitGutterEnable
-:GitGutterSignsEnable
+"" :GitGutterEnable
+"" :GitGutterSignsEnable
 
 
 
@@ -215,7 +215,7 @@ command Light :colorscheme summerfruit256 | AirlineTheme base16
 "" :AirlineTheme base16 | light | silver
 "" :AirlineTheme dark | jellybeans | kolor | laederon | lucius | molokai |
 "" monochrome | murmur | raven! | zenburn
-Dark
+"" Dark
 
 "" command Rtw :call TrimWhiteSpace()
 

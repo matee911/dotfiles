@@ -1,7 +1,7 @@
 [user]
   email = matee@matee.net
   name = matee
-	signingkey = 24BDBD1F964B3793
+  signingkey = 24BDBD1F964B3793
   #email = pep8@redefine.pl
   #name = pep8
 [color]
@@ -48,44 +48,45 @@
 [gc]
     auto = 1
 [alias]
-    finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
-    
-    st = status -sb
+    co = checkout
+    di = diff
+    ll = log --oneline  # Logs: one line per commit; useful for finding a hash of the right commit
+    pl = pull
+    plr = pull --rebase
+    ri = rebase -i      # Interactive rebase
+    st = status -sb     # Short format
+    sv = status -vv     # Verbose format containing diffs for unstaged changes
 
-    # Commit
-	ci = commit -v
-	ca = commit -v -a
-	amend = commit --amend
-	
-	# Checkout
-	co = checkout
+
+    amend = commit --amend
+    fix = commit --fixup
+
+
+    # List added and changed files (.py) in a branch (comparing to the master); i.e. `git pyqa|xargs flake8` if you only care for touched files
+    pyqa = "!git diff --stat --name-status master |grep -E '.py$'|grep -vE '^D'|awk '{print $2}'"
+
+
+
+    finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
 
     # Cherry pick
-    cp = cherry-pick -x
-    
-    # Add
-    aa = add --all
-    au = !git add $(git ls-files -o --exclude-standard)
-    
+    #cp = cherry-pick -x
+
     # Diff
-	di = diff
-	dh = diff HEAD
-	dc = diff --cached
-	w = whatchanged
-	wdi = diff --color-words
-	
-	# Clone
-	cl = clone
-	
-	# Push
-	ps = push
-	
-	# Pull
-	pl = pull
-	
+    dh = diff HEAD
+    #dc = diff --cached
+    w = whatchanged
+    wdi = diff --color-words
+
+    # Clone
+    cl = clone
+
+    # Push
+    ps = push
+
 	# Rebase
 	ready = rebase -i @{u}
-	
+
 	# Log
 	rdi = log --no-merges --stat @{1}..
 	ls = ls-files
@@ -94,16 +95,16 @@
 	less = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate
 	changes = log --pretty=format:':%C(yellow)%h%Cred%d%Creset %s %C(cyan) %an, %ar%Creset' --name-status
 	standup = !"git log --reverse --branches --since=$(if [[ "Mon" == "$(date +%a)" ]]; then echo "last friday"; else echo "yesterday"; fi) --author=$(git config --get user.email) --format=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --date=local"
-	
+
 	# Creates/deletes the current branch at the remote origin repo
     publish = !sh -c 'CURRENT=$(git symbolic-ref HEAD | sed -e s@.*/@@) \
         && git push --set-upstream origin $CURRENT:$CURRENT'
     unpublish = !sh -c 'CURRENT=$(git symbolic-ref HEAD | sed -e s@.*/@@) \
         && git push origin :$CURRENT'
-        
+
     # Remote
     rem = remote
-    
+
     # Revert
     rv = revert
     rs = reset
@@ -111,23 +112,23 @@
     uncommit = reset --soft 'HEAD^'
     pointbranchto = reset --hard
     wipe = reset --hard HEAD
-    
+
     # Stash
     ss = stash  # stash changes
     sl = stash list # list stashes
     sa = stash apply    # apply stash (restore changes)
     sd = stash drop     # drop stashes (destroy changes)
-    
+
     # Config
     info = config --list
-    
+
     # Old branches
     merged = !sh -c 'git branch --merged master | grep -v master'
     rmerged = !sh -c 'git branch -r --merged master | grep -v master'
-    
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
