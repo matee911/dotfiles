@@ -32,6 +32,8 @@
   # Uroki OSX http://superuser.com/questions/777617/line-wrapping-less-in-os-x-specifically-for-use-with-git-diff
   #pager = fold -w 120|less -FRSX
   pager = less -r
+[status]
+  submodulesummary = 1
 [diff]
     # Make diffs shorter when moving/copying files
     rename = copy
