@@ -1,5 +1,5 @@
 [user]
-  email = matee@matee.net
+	email = matee@matee.net
   name = matee
   signingkey = 24BDBD1F964B3793
   #email = pep8@redefine.pl
@@ -52,6 +52,7 @@
 [alias]
   co = checkout
   cl = clone
+  scl = clone --depth=1 --single-branch
   di = diff
   lll = log --oneline  # Logs: one line per commit; useful for finding a hash of the right commit
   ll = "!git --no-pager log --format="%Cgreen%h%Creset%x09%Cblue%an%Creset%x09%s" HEAD~10..HEAD"
