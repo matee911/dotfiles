@@ -2,15 +2,15 @@
 	email = matee@matee.net
   name = matee
   signingkey = 24BDBD1F964B3793
-  #email = pep8@redefine.pl
-  #name = pep8
 [color]
-  ui = true
+  ui = always
   status = auto
   diff = auto
   branch = auto
   interactive = auto
   pager = true
+[pager]
+  add = true
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -20,18 +20,25 @@
   changed = green
   untracked = cyan
 [color "diff"]
+  commit = green
   meta = yellow bold
   frag = magenta bold
   old = red bold
   new = green bold
   whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [core]
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = vim
   excludesfile = ~/.gitignore_global
   # Uroki OSX http://superuser.com/questions/777617/line-wrapping-less-in-os-x-specifically-for-use-with-git-diff
   #pager = fold -w 120|less -FRSX
-  pager = less -r
+  # pager = less -r
+  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
 [status]
   submodulesummary = 1
 [diff]
@@ -54,6 +61,8 @@
   cl = clone
   scl = clone --depth=1 --single-branch
   di = diff
+  l = bl
+  fl = log
   lll = log --oneline  # Logs: one line per commit; useful for finding a hash of the right commit
   ll = "!git --no-pager log --format="%Cgreen%h%Creset%x09%Cblue%an%Creset%x09%s" HEAD~10..HEAD"
   bl = "!git --no-pager log --oneline master~1..HEAD"
@@ -62,13 +71,18 @@
   pu = push
   puf = push --force
   ri = rebase -i      # Interactive rebase
-  ar = rebase -i --autosquash
-  bar = rebase -i --autosquash master~1
+  ari = rebase -i --autosquash
+  bari = rebase -i --autosquash master~1
   s = show
-  st = status -sb     # Short format
+  st = status -sbv     # Short format
   sv = status -vv     # Verbose format containing diffs for unstaged changes
   ffm = merge --ff-only
-
+  show-files = diff-tree --no-commit-id --name-only -r
+  m = co master
+  a = add
+  ap = add -p
+  rc = rebase --continue
+  nb = checkout -b
 
   amend = commit --amend
   fix = commit --fixup
